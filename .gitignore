@@ -276,3 +276,4 @@ gulp_docker/media/
 *.envs/*
 !.envs/.local/
 *.idea/*
+*git commit -m "Adding enrypted deploy key"deploy_key

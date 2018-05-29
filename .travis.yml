@@ -5,14 +5,23 @@ services: docker
 language: python
 python: '3.6'
 script:
-- docker-compose -f local.yml build
+- docker-compose -f production.yml build
 after_success:
-  - docker tag gulp_docker_local_django  $DOCKER_HUB_USERNAME/gulp_docker_1
-  - docker images
-  - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_USERNAME" --password-stdin
-  - docker push $DOCKER_HUB_USERNAME/gulp_docker_1
+- docker tag gulp_docker_production_django  $DOCKER_HUB_USERNAME/gulp_docker_1
+- docker images
+- echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_USERNAME" --password-stdin
+- docker push $DOCKER_HUB_USERNAME/gulp_docker_1
 env:
   global:
   - secure: AfE7R0qWvXQMYhSK035nGn/mfDjMhArFmRr8LfM53/eD5NbiufEg5XzyOTLxsZlOWZXULbIJErDnDvoTi8EKgpmLmwW7N5JrUfoGokCO4s+Euygo+W7k4H3o1Qvbv7eqfoul/9LYG8iisPXphHk1Jb9pTITdo+WxvsrjufMu+IDZtLoYwFuD4K2Gn3UNVypFRQec2DicpccQUvE9O0dpyKsORXEewZ7SowoNpNmlLtaktYnMZIgkuSk464U5RN1ZgTxcIvzvnF3p7YHXzUoAyCsxxObQn+UE03KQj9sttNwgUq+TELHHJqrFmx8cuUnrikwKrIFi9Tv9wIK1B88S5mgekVJA/7e6Edx3LOGc0SkyFXoSwY2+UnrR8+Pl5V+sxZbUn8OiJwK6vitvefBAKUk2mCHwktqDc3bJRMlPbeuzr7XVW1PmACekHi2hwdIQqrBhUtjwWXuwMls6MvZ/t5bb9ag8xfPTO99poDvnmXES5BjOshejO04LyGyX3GTebjpAEEHLH+natgBlFn4ZguNrL0N6djCz38MwDKiMIGrNFR8oY7pRLC1W6zgLE0+LCi0GsMXS5eSp0/vm0BangtHNvpxje+o5/5CNQfzlSToq9XgUhVXqSvRLIR4RHeC5FFAVzXDdx//ie5ZlaH96knHqbKmhqxhpGbOzhzo0npc=
   - secure: g8+vuiyrPDTyka4c3R1gg1W/aDx/KqoeGexFqr8WnA5xhf3fnRuLbCFOzESFr+9OBRgvTmwxTsGL2o5yj/xuAFd8SkosoKzufvgytE35fCoBRCjE9DvcyXq1DmTRxhyc7GVWP8I0PD0e5dJiV5DeX3HKPZgqrK+W/rsOY9+sQqQ1yZumborKjHWrYBjQ8mm7bQ2KqGfnNtnJR7F3noBY6pOthZ+XRnCC3PkGVAEa1PUOaPLWjdm/esS40zgSwvnL3Pw2N2wvigs9ZVtLGbsd1vPdcSoj05tPO+W6sTbuyBVlcJcjXAd5sPgCUQXEvrYdqNoo1iqKBId8IRLhy9M6xkau69y6d3ww2PjTfnjF92z5O4/ADxFozbap172adFCtZSfcVhw25LLjNNZV8kcHA75DH5iav14YGza7ym/ZNIg+vusLr9YgcR76WFFZ289o2Jly272jLfferF1rB8I1DvItPYUJc5jXDgCOZtGEJ3jTQuKJPoejKEiepTyMP1u7HaJBFx9y//7zX8vr8HSU9+B4ryTxNZG9MRKGitNqqR+ESPig4a+a8BgUGlTeZdfqqa1fgxZTVI4UdIGHoGFiCrOJHCfx/J7oby0IE7L9vt7zV/hcNxWgcFbP5MqltLRMAiEy2N1N4cQ1rmACfMtz/C9F6GNL8BeQTOAm+9eDD64=
   - secure: cIBbH3uraWkxdD8k30xOUImHmsI99eqDQGtOBfsV2m6mgFSbkeDyA4SxaI/bVwHmG+yCeOJr9kcbzLZ2wDvgt3gUmA+ZzS7d2g0xWUJBkdDCV6zQ8lgBnBirlOkgOKHYUOMh7MpCBnGXHY7gq8chvlf0WwG/6tEVY69i9aDCTkuGAcu2Vyh2gXUNG21ZG4+ahkkGdKwo5kx0bMohb79jQUudKcFX6iimWUdkp4L/W/0C5wt6+Ep/BZgKXx0RlOTuBSOHFDywm4pjTKTdB5H17yAOTGFJ2YMBfFe17NECz4ocxQtTBUhUcVxTAQtu2fcf6z5nPVNXL7POHQitXWnIJCzNttyCTWYIg5YVkZx1YM6kSF9QDHb6/n/zcTD0c1h5iO37C14FhsIV77cCGMrtwx/Lwwn0nMyIgaDtXXwfAqtvnH9hcim4OMg1s/2cD+wlJ8cX868o6mJ+5q6Xsh3AQVhRFM5S2sv/LrvPrzbdXbboRaUi9r//EMwoJ3KzD8pCqJdxpmin77N/ucHKu3mVbPEcwG3lAeOSCnfoBhvTon7TLkIVipBg98V80lGROEAZuaPvuddprznt6ebn/HlPUAwqCsD/UrV//JM7QMJekxl3zC2FNX7WYg0lT5fewoH4wQZlbjvhHEIaxxZe97S+1Eiz/gvZsvZ3xsFOndbBHJM=
+before_install:
+- openssl aes-256-cbc -K $encrypted_5a531332f7e1_key -iv $encrypted_5a531332f7e1_iv
+  -in deploy_key.enc -out ./deploy_key -d
+deploy:
+ provider: script
+ skip_cleanup: true
+ script: chmod 600 deploy_key && ssh -o StrictHostKeyChecking=no -i deploy_key ubuntu@18.194.208.89 ./deploy.sh
+ on:
+   branch: master

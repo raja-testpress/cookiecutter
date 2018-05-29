@@ -14,9 +14,9 @@ services:
     depends_on:
       - postgres
       - redis
-    env_file:
-      - ./.envs/.production/.django
-      - ./.envs/.production/.postgres
+#    env_file:
+#      - ./.envs/.production/.django
+#      - ./.envs/.production/.postgres
     command: /start
 
   postgres:
@@ -27,8 +27,8 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - postgres_backup:/backups
-    env_file:
-      - ./.envs/.production/.postgres
+#    env_file:
+#      - ./.envs/.production/.postgres
 
   caddy:
     build:
@@ -39,8 +39,8 @@ services:
       - django
     volumes:
       - caddy:/root/.caddy
-    env_file:
-      - ./.envs/.production/.caddy
+#    env_file:
+#      - ./.envs/.production/.caddy
     ports:
       - "0.0.0.0:80:80"
       - "0.0.0.0:443:443"
@@ -54,9 +54,9 @@ services:
     depends_on:
      - postgres
      - redis
-    env_file:
-      - ./.envs/.production/.django
-      - ./.envs/.production/.postgres
+#    env_file:
+#      - ./.envs/.production/.django
+#      - ./.envs/.production/.postgres
     command: /start-celeryworker
 
   celerybeat:
@@ -65,7 +65,7 @@ services:
     depends_on:
       - postgres
       - redis
-    env_file:
-      - ./.envs/.production/.django
-      - ./.envs/.production/.postgres
+#    env_file:
+#      - ./.envs/.production/.django
+#      - ./.envs/.production/.postgres
     command: /start-celerybeat
