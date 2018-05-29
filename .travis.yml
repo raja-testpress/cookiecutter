@@ -31,4 +31,6 @@ group: edge
 services: docker
 language: python
 python: '3.6'
-script: docker-compose -f local.yml build
+script:
+  - docker-compose -f local.yml build
+  - docker-compose -f local.yml run --rm django python manage.py test
