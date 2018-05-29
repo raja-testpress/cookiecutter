@@ -13,13 +13,13 @@
 language: python # => 1
     python: # => 2
       - "3.5"
-    services: # => 3
-      - postgres
-
-    env: # => 4
-      -DJANGO=2.0 DB=postgres
-    install: # => 5
-      - pip install -r requirements/production.txt
+#    services: # => 3
+#      - postgres
+#
+#    env: # => 4
+#      -DJANGO=2.0 DB=postgres
+#    install: # => 5
+#      - pip install -r requirements/production.txt
 #    before_script: # => 6
 #      - psql -e 'create database test;' -u root
 #    script: # => 7
