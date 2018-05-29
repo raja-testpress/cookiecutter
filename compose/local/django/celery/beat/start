@@ -1,0 +1,9 @@
+#!/bin/sh
+
+set -o errexit
+set -o nounset
+set -o xtrace
+
+
+rm -f './celerybeat.pid'
+celery -A gulp_docker.taskapp beat -l INFO
