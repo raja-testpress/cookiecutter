@@ -6,14 +6,14 @@
 #  - sudo apt-get install -qq graphviz-dev python-setuptools python3-dev python-virtualenv python-pip
 #  - sudo apt-get install -qq firefox automake libtool libreadline6 libreadline6-dev libreadline-dev
 #  - sudo apt-get install -qq libsqlite3-dev libxml2 libxml2-dev libssl-dev libbz2-dev wget curl llvm
-language: python
-python:
-  - "3.6"
-install:
-  - pip install -r requirements/production.txt
-script:
-  - python manage.py test --settings=config.settings.production
-
+#language: python
+#python:
+#  - "3.6"
+#install:
+#  - pip install -r requirements/production.txt
+#script:
+#  - python manage.py test --settings=config.settings.production
+#
 
 #sudo: required
 #
@@ -31,14 +31,4 @@ group: edge
 services: docker
 language: python
 python: '3.6'
-env:
-  global:
-    - SECRET_KEY="xxxxklngmwlergnm;kelrgnw"
-    - POSTGRES_HOST=localhost
-    - POSTGRES_PORT=5432
-    - POSTGRES_DB=gulp_docker
-    - POSTGRES_USER=debug
-    - POSTGRES_PASSWORD=debug
-services:
-  - postgresql
 script: docker-compose -f local.yml build
