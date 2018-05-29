@@ -1,11 +1,26 @@
-sudo: true
-before_install:
-  - sudo apt-get update -qq
-  - sudo apt-get install -qq build-essential gettext python-dev zlib1g-dev libpq-dev xvfb
-  - sudo apt-get install -qq libtiff4-dev libjpeg8-dev libfreetype6-dev liblcms1-dev libwebp-dev
-  - sudo apt-get install -qq graphviz-dev python-setuptools python3-dev python-virtualenv python-pip
-  - sudo apt-get install -qq firefox automake libtool libreadline6 libreadline6-dev libreadline-dev
-  - sudo apt-get install -qq libsqlite3-dev libxml2 libxml2-dev libssl-dev libbz2-dev wget curl llvm
-language: python
-python:
-  - "3.6"
+#sudo: true
+#before_install:
+#  - sudo apt-get update -qq
+#  - sudo apt-get install -qq build-essential gettext python-dev zlib1g-dev libpq-dev xvfb
+#  - sudo apt-get install -qq libtiff4-dev libjpeg8-dev libfreetype6-dev liblcms1-dev libwebp-dev
+#  - sudo apt-get install -qq graphviz-dev python-setuptools python3-dev python-virtualenv python-pip
+#  - sudo apt-get install -qq firefox automake libtool libreadline6 libreadline6-dev libreadline-dev
+#  - sudo apt-get install -qq libsqlite3-dev libxml2 libxml2-dev libssl-dev libbz2-dev wget curl llvm
+#language: python
+#python:
+#  - "3.6"
+
+language: python # => 1
+    python: # => 2
+      - "3.5"
+    services: # => 3
+      - postgres
+
+    env: # => 4
+      -DJANGO=2.0 DB=postgres
+    install: # => 5
+      - pip install -r requirements/production.txt
+#    before_script: # => 6
+#      - psql -e 'create database test;' -u root
+#    script: # => 7
+#      - python manage.py test
