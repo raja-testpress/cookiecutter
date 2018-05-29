@@ -15,4 +15,5 @@ env:
 
 after_success:
   - docker tag gulp_docker rajatestpress/gulp_docker
+  - docker images
   - docker push rajatestpress/gulp_docker
