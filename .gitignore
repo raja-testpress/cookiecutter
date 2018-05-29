@@ -274,4 +274,5 @@ gulp_docker/media/
 !.envs/.local/
 
 *.envs/*
+!.envs/.local/
 *.idea/*

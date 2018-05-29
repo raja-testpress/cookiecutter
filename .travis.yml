@@ -34,11 +34,11 @@ python: '3.6'
 env:
   global:
     - SECRET_KEY="xxxxklngmwlergnm;kelrgnw"
-    - DB_NAME=test_db
-    - DB_USER=postgres
-    - DB_PASS=""
-    - DB_HOST=localhost
-    - DB_PORT=""
+    - POSTGRES_HOST=localhost
+    - POSTGRES_PORT=5432
+    - POSTGRES_DB=gulp_docker
+    - POSTGRES_USER=debug
+    - POSTGRES_PASSWORD=debug
 services:
   - postgresql
-script: docker-compose -f production.yml build
+script: docker-compose -f local.yml build
