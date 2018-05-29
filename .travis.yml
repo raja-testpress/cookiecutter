@@ -1,30 +1,3 @@
-#sudo: true
-#before_install:
-#  - sudo apt-get update -qq
-#  - sudo apt-get install -qq build-essential gettext python-dev zlib1g-dev libpq-dev xvfb
-#  - sudo apt-get install -qq libtiff4-dev libjpeg8-dev libfreetype6-dev liblcms1-dev libwebp-dev
-#  - sudo apt-get install -qq graphviz-dev python-setuptools python3-dev python-virtualenv python-pip
-#  - sudo apt-get install -qq firefox automake libtool libreadline6 libreadline6-dev libreadline-dev
-#  - sudo apt-get install -qq libsqlite3-dev libxml2 libxml2-dev libssl-dev libbz2-dev wget curl llvm
-#language: python
-#python:
-#  - "3.6"
-#install:
-#  - pip install -r requirements/production.txt
-#script:
-#  - python manage.py test --settings=config.settings.production
-#
-
-#sudo: required
-#
-#language: python
-#
-#services:
-#  - docker
-#
-#script:
-#  - docker-compose -f production.yml build
-
 sudo: required
 dist: trusty
 group: edge
@@ -32,5 +5,14 @@ services: docker
 language: python
 python: '3.6'
 script:
-  - docker-compose -f local.yml build
-  - docker-compose -f local.yml run --rm django python manage.py test
+- docker-compose -f local.yml build
+
+env:
+  global:
+  - secure: q18awVc9bsaL6CftmseQXhN+XBttmAPJOvTZGgETuFnOiN9lXIzuQltZMOBKA0YGYR/8h98a2gBNfubAKU2V9JGkq7V6q9HxjCAeLxT+sBTqw2DzxHIV0QWY/KgJ5DQKe+8xryQz9E4cm3kruWOX9Luxm73QQwloFLHkWJE76EcrAsofP5RuJsERyB+ZknXkFAdiyExlPkbOiXvGV8c+5pR3iqmYhMenFgwuZ8XGf5mfY83y6SWWnHM5IckpRLLcZkBkY6/xqyiUH8pYrxkI79hgucR2rNhJaXa4w69gzonCHZpPUcJE+3+mQlORgHDNiIqVkz6n4WfJmdTEPp8D1Py/ugquruLQ6ibQkJ2i7jcNC0Yhfr5sYOvxtPhC9jbjBwuZuYnKrK2AG3KNo0ieqPslvQRUB9MXXmsogd9Rp/QCp3qFaROlFY0xlP/Rteb81EJHepVBj5v+Qx+gE4M5uT31QhwJWZZFBE6kVVHkrX7ijWgScHPbvnx6PjH9ZL21J6eF0RjaWYpPilkNtb/DMKd/dVZVQsHPWpUpYEvm1RtUABvpLzcfnBfoC1w+xsk9a+voAoTgntDaAEgoSMgYZF1FixsrD9gogjMUaj1AFROA75EZHaZSMdo47BKFA0bYirO5H3dfJJVBA73EsB0b2mmp2gSeFJ5j5U7QxqFqVRI=
+  - secure: rWu6LWLajD+/VsG0cjxYfHhM8ak2Mx5DW8EZAEWYA5ai3NTmIDNMmauFiGB7AH2iOJRCAoH14Mk3sNIb+ZhTRXdJhSeD3qPwfFK3mLxcjF1squjh0gtRPg/JsHBncN8wfkCTO8XRDwAocJlme42fh9OF+5EFKLraotbyz7voh3EdeET6pQy3W6H36+Yr0f3v6OD4CpCz6gWCtNWaMjRube2LBJ/18fOUZ1fYWOi3cUsu1bYAAJEGp2yuN4P0CGwCtKq6NK33zTyk98RnvhXmHLNTMsGSQlZZe8syDS6flIXAo3lsnOEApBCCxNWaizSSdX/rk1oJMRIRVZrkaK8F5kf4Gzk/FZuc+VZj98YEKIv2+XgAy8iMUxT9YyBVL8n8ouJ8O+FWlcEXmjrZiyQdLmULK2lnL3dVyexebLhyfa8bQOSVWSoakRgG1ozjGhdudT5CZypC7acoRHeFSwlb14iZm3/RgGAaBopFynTTSQ/zFHWjbVJjCA4Q3yno2czWTZ5pe4biwpOXhbfSjOsp2OwSDLrbWJ6drPvpdiamiscJNZGkvv+j1gcdDrMeA7jwBPJAsgZrDGBPteyRx+/fC9C6ScV2onlyFRvW2GTABarSOxjYN6Afc/QzJvMwEpkbrV6naPod5ghjF4gVCLK+0CZu3Yx3Oak6CCkEPtIFwcM=
+  - secure: ZQLkEfbE12pOkM43X+Z6JssPXIMOJLO4NpwQcduSLQ+lnvZW7+fRqM7TzAPYh8LUS4lih2rKAU23+oMfHKCiZcRTpsYRg9AEveOg8WSWdbky9nS8Tx+sggIKJyV4p9X+vlRmkwH5mNU1qQ9R79PodMmjetz0tLHX3e/fCWjIm51h+pDvJ8O1sdMx21LjynLizp2mDQerZE57rzUWyMAhNlqHIZG1JrVjnCWJ1GDFXk5MYB8QQQ1xznzZ0U9qD+DxDpbBvRj0bD/3iT0qejtGzzn5nzRadOBRuyP/3WVHdxaTZmxivqvZAM7ULUFq2Uujf1SivF+SUsjDwtNfRd1Y+/fTkyJkTBwIqkipiC4qK+dw/y/lbwEc2VgvA3FBPSd3OOeqfMg0O+LYX06RYzGm9gDyvr3+oMVWlTcFoyzcdBnPRh9HYX3DSylNAaiNR4rExt22NYBqeyXwoLQ0xnYyL9PCUWZtXbWW2No+pNQl1D/70W/CgEtTK69esipSWrGSdgP9zNv1hICf/XLuyYMS7noRJflQdWcsZtYXxzP/lfUv3SrAMVT1QxLxNS6hr/bSKHOzuwPcgwP/SIRwa8DGju2Jt4BziSs0cYdseR7i0gdlrlChhHCQMAf5Hu0TYRyeFGREVRX1GiVgtZufX+7vOZcVI+FjV0Pz5GgoACaLMGE=
+
+after_success:
+  - docker tag gulp_docker_local_django:latest $DOCKER_HUB_USERNAME/gulp_docker
+  - docker push $DOCKER_HUB_USERNAME/gulp_docker
