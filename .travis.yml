@@ -1,16 +1,35 @@
-sudo: true
-before_install:
-  - sudo apt-get update -qq
-  - sudo apt-get install -qq build-essential gettext python-dev zlib1g-dev libpq-dev xvfb
-  - sudo apt-get install -qq libtiff4-dev libjpeg8-dev libfreetype6-dev liblcms1-dev libwebp-dev
-  - sudo apt-get install -qq graphviz-dev python-setuptools python3-dev python-virtualenv python-pip
-  - sudo apt-get install -qq firefox automake libtool libreadline6 libreadline6-dev libreadline-dev
-  - sudo apt-get install -qq libsqlite3-dev libxml2 libxml2-dev libssl-dev libbz2-dev wget curl llvm
-language: python
-python:
-  - "3.6"
-install:
-  - pip install -r requirements/production.txt
-script:
-  - python manage.py test --settings=config.settings.production
+#sudo: true
+#before_install:
+#  - sudo apt-get update -qq
+#  - sudo apt-get install -qq build-essential gettext python-dev zlib1g-dev libpq-dev xvfb
+#  - sudo apt-get install -qq libtiff4-dev libjpeg8-dev libfreetype6-dev liblcms1-dev libwebp-dev
+#  - sudo apt-get install -qq graphviz-dev python-setuptools python3-dev python-virtualenv python-pip
+#  - sudo apt-get install -qq firefox automake libtool libreadline6 libreadline6-dev libreadline-dev
+#  - sudo apt-get install -qq libsqlite3-dev libxml2 libxml2-dev libssl-dev libbz2-dev wget curl llvm
+#language: python
+#python:
+#  - "3.6"
+#install:
+#  - pip install -r requirements/production.txt
+#script:
+#  - python manage.py test --settings=config.settings.production
+#
 
+#sudo: required
+#
+#language: python
+#
+#services:
+#  - docker
+#
+#script:
+#  - docker-compose -f production.yml build
+
+sudo: required
+dist: trusty
+group: edge
+services: docker
+language: python
+python: '3.6'
+script: docker-compose -f production.yml build && \
+  docker-compose -f production.yml run --rm django python manage.py test
