@@ -152,8 +152,8 @@ COMPRESS_URL = STATIC_URL
 # raven
 # ------------------------------------------------------------------------------
 # https://docs.sentry.io/clients/python/integrations/django/
-#INSTALLED_APPS += ['raven.contrib.django.raven_compat']  # noqa F405
-#MIDDLEWARE = ['raven.contrib.django.raven_compat.middleware.SentryResponseErrorIdMiddleware'] + MIDDLEWARE
+INSTALLED_APPS += ['raven.contrib.django.raven_compat']  # noqa F405
+MIDDLEWARE = ['raven.contrib.django.raven_compat.middleware.SentryResponseErrorIdMiddleware'] + MIDDLEWARE
 
 # Sentry
 # ------------------------------------------------------------------------------
@@ -189,16 +189,16 @@ LOGGING = {
             'handlers': ['console'],
             'propagate': False,
         },
-        # 'raven': {
-        #     'level': 'DEBUG',
-        #     'handlers': ['console'],
-        #     'propagate': False,
-        # },
-        # 'sentry.errors': {
-        #     'level': 'DEBUG',
-        #     'handlers': ['console'],
-        #     'propagate': False,
-        # },
+        'raven': {
+            'level': 'DEBUG',
+            'handlers': ['console'],
+            'propagate': False,
+        },
+        'sentry.errors': {
+            'level': 'DEBUG',
+            'handlers': ['console'],
+            'propagate': False,
+        },
         'django.security.DisallowedHost': {
             'level': 'ERROR',
             'handlers': ['console', 'sentry'],
