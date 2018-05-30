@@ -6,11 +6,12 @@ language: python
 python: '3.6'
 script:
 - docker-compose -f local.yml build
+- docker-compose -f local.yml run --rm django python manage.py test
 after_success:
-- docker tag gulp_docker_local_django  $DOCKER_HUB_USERNAME/gulp_docker_1
+- docker tag gulp_docker_local_django  $DOCKER_HUB_USERNAME/live_demo
 - docker images
 - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_USERNAME" --password-stdin
-- docker push $DOCKER_HUB_USERNAME/gulp_docker_1
+- docker push $DOCKER_HUB_USERNAME/live_demo
 env:
   global:
   - secure: AfE7R0qWvXQMYhSK035nGn/mfDjMhArFmRr8LfM53/eD5NbiufEg5XzyOTLxsZlOWZXULbIJErDnDvoTi8EKgpmLmwW7N5JrUfoGokCO4s+Euygo+W7k4H3o1Qvbv7eqfoul/9LYG8iisPXphHk1Jb9pTITdo+WxvsrjufMu+IDZtLoYwFuD4K2Gn3UNVypFRQec2DicpccQUvE9O0dpyKsORXEewZ7SowoNpNmlLtaktYnMZIgkuSk464U5RN1ZgTxcIvzvnF3p7YHXzUoAyCsxxObQn+UE03KQj9sttNwgUq+TELHHJqrFmx8cuUnrikwKrIFi9Tv9wIK1B88S5mgekVJA/7e6Edx3LOGc0SkyFXoSwY2+UnrR8+Pl5V+sxZbUn8OiJwK6vitvefBAKUk2mCHwktqDc3bJRMlPbeuzr7XVW1PmACekHi2hwdIQqrBhUtjwWXuwMls6MvZ/t5bb9ag8xfPTO99poDvnmXES5BjOshejO04LyGyX3GTebjpAEEHLH+natgBlFn4ZguNrL0N6djCz38MwDKiMIGrNFR8oY7pRLC1W6zgLE0+LCi0GsMXS5eSp0/vm0BangtHNvpxje+o5/5CNQfzlSToq9XgUhVXqSvRLIR4RHeC5FFAVzXDdx//ie5ZlaH96knHqbKmhqxhpGbOzhzo0npc=
@@ -25,4 +26,3 @@ deploy:
  script: chmod 600 deploy_key && ssh -o StrictHostKeyChecking=no -i deploy_key ubuntu@18.194.208.89 ./deploy.sh
  on:
    branch: master
-
