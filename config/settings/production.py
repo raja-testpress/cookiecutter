@@ -136,7 +136,7 @@ ANYMAIL = {
     'MAILGUN_API_KEY': env('MAILGUN_API_KEY'),
     'MAILGUN_SENDER_DOMAIN': env('MAILGUN_DOMAIN')
 }
-
+DEFAULT_FROM_EMAIL = "raja@testpress.in"
 # Gunicorn
 # ------------------------------------------------------------------------------
 INSTALLED_APPS += ['gunicorn']  # noqa F405

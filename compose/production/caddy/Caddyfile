@@ -7,6 +7,8 @@ www.{$DOMAIN_NAME} {
         header_upstream Host {host}
         header_upstream X-Real-IP {remote}
         header_upstream X-Forwarded-Proto {scheme}
+        transparent
+            except /static
     }
     log stdout
     errors stdout
