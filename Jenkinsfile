@@ -2,17 +2,9 @@ pipeline {
   agent any
   stages {
     stage('Build') {
-      parallel {
-        stage('Build') {
-          steps {
-            echo 'Building..'
-          }
-        }
-        stage('Test build') {
-          steps {
-            echo 'building test'
-          }
-        }
+      steps {
+        echo 'Building..'
+        sh '- docker-compose -f local.yml build'
       }
     }
     stage('Test') {
